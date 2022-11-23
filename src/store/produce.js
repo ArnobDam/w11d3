@@ -5,8 +5,6 @@ export default function produceReducer(state = {}, action) {
 
     // const nextState = {...state}
 
-
-
     switch (action.type) {
         case POPULATE:
             const produceObject = {}
