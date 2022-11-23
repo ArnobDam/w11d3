@@ -6,10 +6,18 @@ import { useSelector } from 'react-redux';
 const ADD_PRODUCE = "Cart/ADD_PRODUCE"
 const REMOVE_PRODUCE = "Cart/REMOVE_PRODUCE"
 const INCREMENT_PRODUCE = "Cart/INCREMENT_PRODUCE"
+const DECREMENT_PRODUCE = "Cart/DECREMENT_PRODUCE"
 
 export const incrementProduce = (itemId) => {
   return {
     type: INCREMENT_PRODUCE,
+    itemId: itemId
+  }
+}
+
+export const decrementProduce = (itemId) => {
+  return {
+    type: DECREMENT_PRODUCE,
     itemId: itemId
   }
 }
@@ -44,6 +52,9 @@ export const cartReducer = (state = {}, action) => {
       return nextState;
     case INCREMENT_PRODUCE:
       nextState[action.itemId].count++;
+      return nextState;
+    case DECREMENT_PRODUCE:
+      nextState[action.itemId].count--;
       return nextState;
     default:
       return state;

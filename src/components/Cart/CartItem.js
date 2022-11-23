@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeProduce, incrementProduce } from './Cart.js';
+import { removeProduce, incrementProduce, decrementProduce } from './Cart.js';
 
 
 function CartItem({ item }) {
@@ -13,8 +13,17 @@ function CartItem({ item }) {
   const dispatch = useDispatch();
 
   const incrementProduceCount = (itemId) => {
-      setCount(prevCount => prevCount + 1)
-      return dispatch(incrementProduce(itemId))
+    setCount(prevCount => prevCount + 1)
+    return dispatch(incrementProduce(itemId))
+  }
+
+  const decrementProduceCount = (itemId) => {
+    setCount(prevCount => prevCount - 1)
+    if (count === 1) {
+      return dispatch(removeProduce(itemId))
+    } else {
+      return dispatch(decrementProduce(itemId))
+    }
   }
 
   return (
@@ -33,6 +42,7 @@ function CartItem({ item }) {
         </button>
         <button
           className="cart-item-button"
+          onClick={() => decrementProduceCount(item.id)}
         >
           -
         </button>
