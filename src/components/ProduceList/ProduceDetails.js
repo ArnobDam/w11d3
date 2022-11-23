@@ -6,6 +6,10 @@ function ProduceDetails({ produce }) {
 
   const dispatch = useDispatch();
 
+  const addIncrementProduce = (itemId) => {
+
+  }
+
   return (
     <li className="produce-details">
       <span>{produce.name}</span>
