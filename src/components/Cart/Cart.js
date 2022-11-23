@@ -1,6 +1,34 @@
 import CartItem from './CartItem';
 import './Cart.css';
 
+
+const ADD_PRODUCE = "Cart/ADD_PRODUCE"
+
+export const addProduce = (itemId) => {
+  // let item = {};
+  // item[itemId] = 
+    return {
+        type: ADD_PRODUCE,
+        itemId: itemId
+    }
+}
+
+export const cartReducer = (state = {}, action) => {
+  Object.freeze(state)
+
+  const nextState = {...state}
+
+  switch (action.type) {
+      case ADD_PRODUCE:
+          nextState[action.itemId] = {id: action.itemId, count: 1}
+          return nextState;
+      default:
+          return state;
+  }
+}
+
+
+
 function Cart() {
   const cart = {};
   const produce = {};

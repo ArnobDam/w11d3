@@ -10,6 +10,7 @@ function App() {
 
   useEffect(() => {
     dispatch(populateProduce());
+    // dispatch()
   }, [dispatch]);
 
   
