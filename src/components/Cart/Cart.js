@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 
 
 const ADD_PRODUCE = "Cart/ADD_PRODUCE"
+const REMOVE_PRODUCE = "Cart/REMOVE_PRODUCE"
 
 export const addProduce = (itemId) => {
   // let item = {};
@@ -12,6 +13,13 @@ export const addProduce = (itemId) => {
         type: ADD_PRODUCE,
         itemId: itemId
     }
+}
+
+export const removeProduce = (itemId) => {
+  return {
+    type: REMOVE_PRODUCE,
+    itemId: itemId
+  }
 }
 
 export const cartReducer = (state = {}, action) => {
@@ -23,6 +31,9 @@ export const cartReducer = (state = {}, action) => {
       case ADD_PRODUCE:
           nextState[action.itemId] = {id: action.itemId, count: 1}
           return nextState;
+      case REMOVE_PRODUCE:
+        delete nextState[action.itemId]
+        return nextState;
       default:
           return state;
   }
