@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { removeProduce } from './Cart.js'
+import { removeProduce, incrementProduce } from './Cart.js';
+
 
 function CartItem({ item }) {
   const [count, setCount] = useState(item.count);
@@ -10,6 +11,11 @@ function CartItem({ item }) {
   }, [item.count]);
 
   const dispatch = useDispatch();
+
+  const incrementProduceCount = (itemId) => {
+      setCount(prevCount => prevCount + 1)
+      return dispatch(incrementProduce(itemId))
+  }
 
   return (
     <li className="cart-item">
@@ -21,6 +27,7 @@ function CartItem({ item }) {
         />
         <button
           className="cart-item-button"
+          onClick={() => incrementProduceCount(item.id)}
         >
           +
         </button>
